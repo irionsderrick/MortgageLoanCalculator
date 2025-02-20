@@ -15,7 +15,6 @@ namespace MortgageCalculatorLogic
         public double InterestRate { get; set; }
         public double HoaFeesYearly { get; set; }
         public double BuyerMonthlyIncome { get; set; }
-
         public double LoanValue { get; set; }
         public double MonthlyPayment { get; set; }
         public double EscrowMonthly { get; set; }

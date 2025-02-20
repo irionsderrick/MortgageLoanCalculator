@@ -1,13 +1,12 @@
-﻿using CCAD17Utilities;
+﻿using MortgageCalculatorLogic;
 using uiv = CCAD17Utilities.UserInputWithValidation;
-using MortgageCalculatorLogic;
 namespace MortgageLoanCalculator;
 
 public class Program
 {
     public static void Main(string[] args)
     {
-       
+
 
         Console.WriteLine("=== Mortgage Calculator ===");
 
@@ -22,8 +21,14 @@ public class Program
         var downPayment = uiv.GetUserInputDouble("Enter Down Payment Amount: $");
         mcl.DownPayment = downPayment;
 
-        var loanTerm = uiv.GetUserInputInt("Enter Loan Term (15 or 30 years): ");
+        int loanTerm;
+        do
+        {
+            loanTerm = uiv.GetUserInputInt("Enter Loan Term (15 or 30 years): ");
+        } while (loanTerm != 15 && loanTerm != 30);
+
         mcl.LoanTermYears = loanTerm;
+
 
         var interestRate = uiv.GetUserInputDouble("Enter Fixed Interest Rate (e.g., 5.0 for 5%): ");
         mcl.InterestRate = interestRate;

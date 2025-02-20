@@ -4,9 +4,6 @@ namespace TestMortgageCalculatorLogic;
 
 public class TestMortgageCalculations
 {
-
-
-
     private readonly MortgageCalculations _calculator;
 
     public TestMortgageCalculations()
@@ -33,8 +30,8 @@ public class TestMortgageCalculations
         var result = _calculator.CalculateLoan(loan);
 
         // Assert
-        double expectedLoanAmount = (loan.HomePrice - loan.DownPayment) + (0.01 * (loan.HomePrice - loan.DownPayment)) + 2500;
-        result.LoanValue.ShouldBe(expectedLoanAmount);
+        double expectedLoanValue = (loan.HomePrice - loan.DownPayment) + (0.01 * (loan.HomePrice - loan.DownPayment)) + 2500;
+        result.LoanValue.ShouldBe(expectedLoanValue);
     }
 
     [Fact]
@@ -225,35 +222,35 @@ public class TestMortgageCalculations
 
 
 
-    //    [Theory]
+    [Theory]
 
 
-    //    [InlineData(300000, 310000, 60000, 30, 5.0, 1200, 8000, true)]
-    //    [InlineData(450000, 429500, 32000, 30, 4.5, 0, 9000, false)]
-    //    public void TestLoanCalculation(
-    //        double homePrice, double marketValue, double downPayment, int loanTerm,
-    //        double interestRate, double hoaFeesYearly, double monthlyIncome, bool expectedApproval)
-    //    {
-    //        // Arrange
-    //        var loan = new MortgageDetails
-    //        {
-    //            HomePrice = homePrice,
-    //            MarketValue = marketValue,
-    //            DownPayment = downPayment,
-    //            LoanTermYears = loanTerm,
-    //            InterestRate = interestRate,
-    //            HoaFeesYearly = hoaFeesYearly,
-    //            BuyerMonthlyIncome = monthlyIncome
-    //        };
+    [InlineData(300000, 310000, 60000, 30, 5.0, 1200, 8000, true)]
+    [InlineData(450000, 429500, 32000, 30, 4.5, 0, 9000, false)]
+    public void TestLoanCalculation(
+        double homePrice, double marketValue, double downPayment, int loanTerm,
+        double interestRate, double hoaFeesYearly, double monthlyIncome, bool expectedApproval)
+    {
+        // Arrange
+        var loan = new MortgageDetails
+        {
+            HomePrice = homePrice,
+            MarketValue = marketValue,
+            DownPayment = downPayment,
+            LoanTermYears = loanTerm,
+            InterestRate = interestRate,
+            HoaFeesYearly = hoaFeesYearly,
+            BuyerMonthlyIncome = monthlyIncome
+        };
 
-    //        var calculator = new MortgageCalculations();
+        var calculator = new MortgageCalculations();
 
-    //        // Act
-    //        loan = calculator.CalculateLoan(loan);
+        // Act
+        loan = calculator.CalculateLoan(loan);
 
-    //        // Assert
-    //        Assert.Equal(expectedApproval, loan.IsApproved);
-    //    }
+        // Assert
+        Assert.Equal(expectedApproval, loan.IsApproved);
+    }
 
 
 }
